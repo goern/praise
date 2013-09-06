@@ -1,0 +1,19 @@
+%h1 Listing lobs
+
+%table
+  %tr
+    %th Description
+    %th Published
+    %th
+    %th
+    %th
+
+  - @lobs.each do |lob|
+    %tr
+      %td= lob.description
+      %td= lob.published
+      %td= link_to 'Show', lob
+      %td= link_to 'Edit', edit_lob_path(lob)
+      %td= link_to 'Destroy', lob, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br

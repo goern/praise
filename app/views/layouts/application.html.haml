@@ -2,8 +2,8 @@
 %html
   %head
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-      %title= content_for?(:title) ? yield(:title) : "Myapp"
-      %meta{:content => content_for?(:description) ? yield(:description) : "Myapp", :name => "description"}
+      %title= content_for?(:title) ? yield(:title) : "haste gut gemacht!"
+      %meta{:content => content_for?(:description) ? yield(:description) : "haste gut gemacht!", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
         = javascript_include_tag "application"
         = csrf_meta_tags
@@ -17,7 +17,13 @@
       .container
         .content
           .row
-            .span12
+            .span2
+              - if current_user
+                %p Hey <em>#{current_user.name}</em>, thanks for dropping by and say some litte good to your friends
+                %p on the right you see what others have said lately, but you should #{link_to 'say some good', new_lob_url}!
+              - else
+                %p Please #{link_to 'sign in', signin_url} so that you can leave a good saying about a friend
+            .span10
               = render 'layouts/messages'
               = yield
           %footer

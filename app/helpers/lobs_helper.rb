@@ -1,0 +1,2 @@
+module LobsHelper
+end

@@ -1,0 +1,14 @@
+.fieldset
+  = simple_form_for @lob, html: {class: 'form-horizontal' }  do |f|
+    = f.error_notification
+
+    .form-inputs
+      = f.input :description
+      = f.input :published
+      = f.association :user, collection: User.all(order: 'email'), prompt: "Choose a User"
+
+    %div.btn-group
+    .form-actions
+      = f.button :submit, :class => "btn btn-success"
+      = link_to 'back home', root_path, :class => "btn btn-action"
+

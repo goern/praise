@@ -12,3 +12,7 @@ YAML.load(ENV['ROLES']).each do |role|
   Role.find_or_create_by_name(role)
   puts 'role: ' << role
 end
+
+#l1 = Lob.create(:description => 'super rails4 Können!', :author => User.first)
+#l2 = Lob.create(:description => 'gute Deutsch Kenntnisses', :author => User.first)
+#l3 = Lob.create(:description => 'auch gute Deutsch Kenntnisses', :author => User.first)

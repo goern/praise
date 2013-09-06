@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130905111612) do
+ActiveRecord::Schema.define(version: 20130905214453) do
+
+  create_table "lobs", force: true do |t|
+    t.text     "description"
+    t.boolean  "published"
+    t.integer  "user_id"
+    t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lobs", ["author_id"], name: "index_lobs_on_author_id"
+  add_index "lobs", ["user_id"], name: "index_lobs_on_user_id"
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -31,6 +43,8 @@ ActiveRecord::Schema.define(version: 20130905111612) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "fb_user_uid",     default: 0
+    t.string   "fb_access_token"
   end
 
   create_table "users_roles", id: false, force: true do |t|

@@ -1,4 +1,6 @@
-%h3 Home
-- @users.each do |user|
-  %p
-    User: #{link_to user.name, user}
+%h3 Also mal ehrlich...
+
+%p das haste gut gemacht!
+
+- @lobs.each do |lob|
+  %p #{lob.author.name} says, that #{lob.user.name} did a good job on '#{lob.description}'

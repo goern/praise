@@ -1,0 +1,4 @@
+%h2 Dashboard
+%p We got #{@number_of_users} user in total and #{@number_of_lobs} Lobs.
+
+%p New Lob in the last 24 hours: #{Lob.during_last(24.hours).count}
