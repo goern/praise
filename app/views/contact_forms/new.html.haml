@@ -6,6 +6,7 @@
       = f.input :name, :required => false, prompt: "Choose a User"
       = f.input :email, :required => false
       = f.input :message, :as => :text, :required => false
+      = raw recaptcha_tag(:challenge)
 
     %div.btn-group
     .form-actions

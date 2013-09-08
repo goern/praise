@@ -20,6 +20,11 @@ module Praise2
       g.helper_specs false
     end
 
+    config.gem 'rack-recaptcha', :lib => 'rack/recaptcha'
+    config.middleware.use Rack::Recaptcha, 
+      :public_key => '6LdYKOcSAAAAADLjDbFxjotAjAfv5i1aIZN6U0-h', 
+      :private_key => '6LdYKOcSAAAAACRwnLq1snTnJOCS-P0EBeEpSBRW'
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

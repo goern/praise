@@ -22,6 +22,7 @@ gem 'fb_graph'
 gem 'rolify'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'mail_form', :git => 'https://github.com/plataformatec/mail_form.git'
+gem 'rack-recaptcha', :require => 'rack/recaptcha'
 
 group :development do
   gem 'better_errors'
