@@ -1,0 +1,12 @@
+.modal{:id => "lob-edit-#{lob.id}", :style => "display: none;"}
+  = simple_form_for lob, :url => lob_path(lob), :html => {:method => :put, :class => 'form-horizontal' } do |f|
+    .modal-header
+      %a.close{"data-dismiss" => "modal"} ×
+      %h3 Edit Lob
+    .modal-body
+      = f.input :description
+      = f.input :published
+      = f.association :user, collection: User.all(order: 'email'), prompt: "Choose a User"
+    .modal-footer
+      = f.submit "save", :class => "btn btn-success"
+      %a.btn{"data-dismiss" => "modal", :href => "#"} dismiss

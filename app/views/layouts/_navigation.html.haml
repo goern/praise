@@ -1,6 +1,6 @@
 = nav_bar brand: 'haste gut gemacht!', brand_link: '/', fixed: :top, responsive: true do
   = menu_group class: 'foo', id: 'menu' do
-    = menu_item "Contact Us!", page_path('contact')
+    = menu_item "Contact Us!", contact_forms_new_path
     - if user_signed_in?
       - if current_user.has_role? :admin
         = drop_down 'Admin Stuff' do

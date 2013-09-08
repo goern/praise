@@ -21,6 +21,7 @@ gem 'fb_graph'
 
 gem 'rolify'
 gem 'simple_form', '>= 3.0.0.rc'
+gem 'mail_form', :git => 'https://github.com/plataformatec/mail_form.git'
 
 group :development do
   gem 'better_errors'
@@ -39,6 +40,7 @@ group :development, :test do
 	gem 'sqlite3'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'mailcatcher'
 end
 
 group :test do

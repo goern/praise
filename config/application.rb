@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-module Myapp
+module Praise2
   class Application < Rails::Application
 
     # don't generate RSpec tests for views and helpers

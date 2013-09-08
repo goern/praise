@@ -1,19 +1,19 @@
-%h1 Listing lobs
+%h3 Lobs
 
-%table
-  %tr
-    %th Description
-    %th Published
-    %th
-    %th
-    %th
-
-  - @lobs.each do |lob|
-    %tr
-      %td= lob.description
-      %td= lob.published
-      %td= link_to 'Show', lob
-      %td= link_to 'Edit', edit_lob_path(lob)
-      %td= link_to 'Destroy', lob, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
+.span8
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th Description
+        %th Published
+        %th
+    %tbody
+      - @lobs.each do |lob|
+        %tr
+          %td= lob.description
+          %td= lob.published
+          %td
+            %a.btn.btn-mini{"data-toggle" => "modal", :href => "#lob-edit-#{lob.id}", :type => "button"} edit
+            = render lob
+            = link_to 'destroy', lob, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini' unless lob.author == current_user
+            
