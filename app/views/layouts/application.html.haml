@@ -19,10 +19,10 @@
           .row
             .span2
               - if current_user
-                %p Hey <em>#{current_user.name}</em>, thanks for dropping by and say some litte good to your friends
-                %p on the right you see what others have said lately, but you should #{link_to 'say some good', new_lob_url}!
+                %p Hey <em>#{current_user.name}</em>, danke das du vorbei schaust und was gutes über deine Freunde sagen willst.
+                %p Rechts kannst du sehen was kürzlich gesagt worden ist, aber: #{link_to 'sag selbst etwas Gutes!', new_lob_url}!
               - else
-                %p Please #{link_to 'sign in', signin_url} so that you can leave a good saying about a friend
+                %p Bitte #{link_to 'melde dich via Facebook', signin_url} an, so dass du deinen Freunden sagen kann: das haste gut gemacht!
             .span10
               = render 'layouts/messages'
               = yield

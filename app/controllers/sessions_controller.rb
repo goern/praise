@@ -21,20 +21,20 @@ class SessionsController < ApplicationController
     session[:fbgraph_uid] = auth['uid']
     user.add_role :admin if User.count == 1 # make the first user an admin
     if user.email.blank?
-      redirect_to edit_user_path(user), :alert => "Please enter your email address."
+      redirect_to edit_user_path(user), :alert => I18n.t("Please enter your email address.")
     else
-      redirect_to root_url, :notice => 'Signed in!'
+      redirect_to root_url, :notice => I18n.t('Signed in!')
     end
 
   end
 
   def destroy
     reset_session
-    redirect_to root_url, :notice => 'Signed out!'
+    redirect_to root_url, :notice => I18n.t('Signed out!')
   end
 
   def failure
-    redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
+    redirect_to root_url, :alert => I18n.t("Authentication error: #{params[:message].humanize}")
   end
 
 end

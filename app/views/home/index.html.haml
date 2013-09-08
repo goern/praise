@@ -1,6 +1,14 @@
-%h2 Also mal ehrlich...
+- if not user_signed_in?
+	%div.hero-unit
+		%h1 Hier wird gelobt!
+		%p Wenn du dich anmeldest, dann kannst du deine Facebook Freunde loben! 
 
-%p das haste gut gemacht!
+%h2 und mal ehrlich, die Leute können doch echt was!
 
 - @lobs.each do |lob|
-  %p #{lob.author.name} says, that #{lob.user.name} did a good job on '#{lob.description}'
+	%div#sprechblase
+		%p #{lob.author.name} sagt
+		%p
+			#{lob.user.name}, das haste richtig gut gemacht: '#{lob.description}'
+	= image_tag "https://graph.facebook.com/#{lob.author.uid}/picture?type=small", :alt => "#{lob.author.uid}"
+		
