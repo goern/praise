@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130906083151) do
+ActiveRecord::Schema.define(version: 20130909084238) do
 
   create_table "lobs", force: true do |t|
     t.text     "description"
@@ -24,6 +24,19 @@ ActiveRecord::Schema.define(version: 20130906083151) do
 
   add_index "lobs", ["author_id"], name: "index_lobs_on_author_id"
   add_index "lobs", ["user_id"], name: "index_lobs_on_user_id"
+
+  create_table "rails_admin_histories", force: true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      limit: 2
+    t.integer  "year",       limit: 5
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -43,9 +56,18 @@ ActiveRecord::Schema.define(version: 20130906083151) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "fb_user_uid",     default: 0
+    t.integer  "fb_user_uid",            default: 0
     t.string   "fb_access_token"
     t.boolean  "visible"
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
 
   create_table "users_roles", id: false, force: true do |t|
@@ -54,5 +76,16 @@ ActiveRecord::Schema.define(version: 20130906083151) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+
+  create_table "versions", force: true do |t|
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
 end

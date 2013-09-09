@@ -6,9 +6,9 @@
 %h2 und mal ehrlich, die Leute können doch echt was!
 
 - @lobs.each do |lob|
-	%div#sprechblase
-		%p #{lob.author.name} sagt
-		%p
-			#{lob.user.name}, das haste richtig gut gemacht: '#{lob.description}'
 	= image_tag "https://graph.facebook.com/#{lob.author.uid}/picture?type=small", :alt => "#{lob.author.uid}"
+	%p #{lob.author.name} sagt
+	%p
+		#{lob.user.name}, das haste richtig gut gemacht: '#{lob.description}'
+	
 		

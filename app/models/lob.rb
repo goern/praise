@@ -8,4 +8,5 @@ class Lob < ActiveRecord::Base
   
   scope :since, lambda {|time| where("created_at > ?", time) }
   scope :during_last, lambda {|time| where("created_at > ?", (Time.now - time)) }
+
 end

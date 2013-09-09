@@ -9,23 +9,24 @@
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
-    .navbar.navbar-fixed-top
-      %nav.navbar-inner
+    %div.container.canvas
+      .navbar.navbar-fixed-top
+        %nav.navbar-inner
+          .container
+            = render 'layouts/navigation'
+      #main{:role => "main"}
         .container
-          = render 'layouts/navigation'
-    #main{:role => "main"}
-      .container
-        .content
-          .row
-            .span2
-              - if current_user
-                %p Hey <em>#{current_user.name}</em>, danke das du vorbei schaust und was gutes über deine Freunde sagen willst.
-                %p Rechts kannst du sehen was kürzlich gesagt worden ist, aber: #{link_to 'sag selbst etwas Gutes!', new_lob_url}!
-              - else
-                %p Bitte #{link_to 'melde dich via Facebook', signin_url} an, so dass du deinen Freunden sagen kann: das haste gut gemacht!
-            .span10
-              = render 'layouts/messages'
-              = yield
-          %footer
-      / ! end of .container
-    / ! end of #main
+          .content
+            .row
+              .span2
+                - if current_user
+                  %p Hey <em>#{current_user.name}</em>, danke das du vorbei schaust und was gutes über deine Freunde sagen willst.
+                  %p Rechts kannst du sehen was kürzlich gesagt worden ist, aber: #{link_to 'sag selbst etwas Gutes!', new_lob_url}!
+                - else
+                  %p Bitte #{link_to 'melde dich via Facebook', signin_url} an, so dass du deinen Freunden sagen kann: das haste gut gemacht!
+              .span10
+                = render 'layouts/messages'
+                = yield
+            %footer
+        / ! end of .container
+      / ! end of #main
