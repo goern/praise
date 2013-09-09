@@ -1,5 +1,5 @@
-!!!
-%html
+!!! 5
+%html(lang="en" prefix="og: http://ogp.me/ns#")
   %head
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
       %title= content_for?(:title) ? yield(:title) : "haste gut gemacht!"
@@ -27,6 +27,4 @@
               .span10
                 = render 'layouts/messages'
                 = yield
-            %footer
-        / ! end of .container
-      / ! end of #main
+            = render 'layouts/footer'
