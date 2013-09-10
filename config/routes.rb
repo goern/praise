@@ -1,4 +1,5 @@
 Praise2::Application.routes.draw do
+  post 'canvas' => 'canvas#index'
   root :to => "home#index"
 
   get 'contact_forms/new'
