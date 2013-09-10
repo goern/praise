@@ -17,12 +17,14 @@ gem 'haml-rails'
 gem 'high_voltage'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'fb_graph'
+gem 'koala', '~> 1.7.0rc1'
 
 gem 'rolify'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'mail_form', :git => 'https://github.com/plataformatec/mail_form.git'
 gem 'rack-recaptcha', :require => 'rack/recaptcha'
+gem 'rack-facebook-signed-request', :git => 'git://github.com/cmer/rack-facebook-signed-request.git'
+gem 'rack-p3p'
 
 group :development do
   gem 'better_errors'

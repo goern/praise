@@ -1,2 +1,14 @@
-%h1 Canvas#index
-%p Find me in app/views/canvas/index.html.haml
+- if not user_signed_in?
+	%div.hero-unit
+		%h1 Hier wird gelobt!
+		%p Wenn du dich anmeldest, dann kannst du deine Facebook Freunde loben!
+- else
+	%div.hero-uni
+		%h2 und los geht's...
+		%p super das du hier bist #{@user.name}
+
+- @lobs.each do |lob|
+	= image_tag "https://graph.facebook.com/#{lob.author.uid}/picture?type=small", :alt => "#{lob.author.uid}"
+	%p #{lob.author.name} sagt
+	%p
+		#{lob.user.name}, das haste richtig gut gemacht: '#{lob.description}'

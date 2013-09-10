@@ -7,7 +7,13 @@ class CanvasController < ApplicationController
   layout :set_layout
 
   def index
-    @date = Time.new
+    @user = User.find(get_session[:user_id])
+      
+    @lobs = Lob.all
+  end
+  
+  def new_lob
+    @users = User.all
   end
 
   def detect_facebook_post!

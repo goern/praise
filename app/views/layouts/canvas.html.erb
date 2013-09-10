@@ -18,12 +18,14 @@
 	</script>
 </head>
 <body>
-
-	<h1>Welcome!</h1>
-	<p>Hello, World!</p>
+	<div class="container">
+	    <div class="sidebar">
+	<%= yield %>
+	</div>
+	</div>
 	
-	<p>The time is now: <%= @date %>.</p>
-
+	<a href="/canvas/new/" class="cjax">Go to page 2</a>
+	
 <script type="text/javascript">
     // Enable CJAX browsing (ie: PushState on smart browsers, full top redirects for IE.)
     initCJAX(window);
