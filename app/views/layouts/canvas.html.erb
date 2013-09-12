@@ -19,13 +19,17 @@
 </head>
 <body>
 	<div class="container">
-	    <div class="sidebar">
-	<%= yield %>
-	</div>
+		<p><a href="/lobs/new">new</a></p>
 	</div>
 	
-	<a href="/canvas/new/" class="cjax">Go to page 2</a>
-	
+	<div id="fb-root"></div>
+		<div class="sidebar">
+			<%= yield %>
+		</div>
+	</div>
+
+	<div class="fb-like" data-href="http://apps.facebook.com/hgg-develop" data-width="450" data-show-faces="true" data-send="true"></div>
+
 <script type="text/javascript">
     // Enable CJAX browsing (ie: PushState on smart browsers, full top redirects for IE.)
     initCJAX(window);

@@ -1,6 +1,8 @@
 class LobsController < ApplicationController
   load_and_authorize_resource except: [:create]
   
+  before_filter :parse_facebook_cookies
+  
   before_action :set_lob, only: [:show, :edit, :update, :destroy]
 
   # GET /lobs
@@ -17,6 +19,12 @@ class LobsController < ApplicationController
   # GET /lobs/new
   def new
     @lob = Lob.new
+
+    @graph = Koala::Facebook::GraphAPI.new(session[:fb_access_token])
+    @friends = []
+    @graph.get_connections('me', 'friends').each {|x| @friends.push(x["name"]) }
+    
+    @friends.sort
   end
 
   # GET /lobs/1/edit
@@ -73,5 +81,9 @@ class LobsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lob_params
       params.require(:lob).permit(:description, :published, :user_id)
+    end
+    
+    def parse_facebook_cookies
+      @facebook_cookies ||= Koala::Facebook::OAuth.new.get_user_info_from_cookie(cookies)
     end
 end

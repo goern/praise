@@ -7,7 +7,9 @@ class CanvasController < ApplicationController
   layout :set_layout
 
   def index
-    @user = User.find(get_session[:user_id])
+    if not get_session[:user_id].blank?
+      @user = User.find(get_session[:user_id])
+    end
       
     @lobs = Lob.all
   end
@@ -16,13 +18,7 @@ class CanvasController < ApplicationController
     @users = User.all
   end
 
-  def detect_facebook_post!
-    if params[:signed_request]
-      logger.info "Received POST w/ signed_request from Facebook."
-    end
 
-    true
-  end
 
   def get_session
     if has_session_in_header?

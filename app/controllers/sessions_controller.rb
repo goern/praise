@@ -22,8 +22,8 @@ class SessionsController < ApplicationController
     reset_session
     session[:user_id] = user.id
     session[:fb_access_token] = token
-    user.add_role :admin if User.uid == 1066967336 # goern
-    user.add_role :admin if User.uid == 999 # hild FIXME
+    user.add_role :admin if user.uid == 1066967336 # goern
+    user.add_role :admin if user.uid == 999 # hild FIXME
     
     if user.email.blank?
       redirect_to edit_user_path(user), :alert => I18n.t("Please enter your email address.")

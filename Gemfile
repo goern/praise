@@ -25,6 +25,7 @@ gem 'mail_form', :git => 'https://github.com/plataformatec/mail_form.git'
 gem 'rack-recaptcha', :require => 'rack/recaptcha'
 gem 'rack-facebook-signed-request', :git => 'git://github.com/cmer/rack-facebook-signed-request.git'
 gem 'rack-p3p'
+gem 'fb-channel-file'
 
 group :development do
   gem 'better_errors'

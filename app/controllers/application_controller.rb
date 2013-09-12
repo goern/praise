@@ -5,6 +5,14 @@ class ApplicationController < ActionController::Base
   helper_method :correct_user?
   helper_method :facebook_user
 
+  def detect_facebook_post!
+    if params[:signed_request]
+      logger.info "Received POST w/ signed_request from Facebook."
+    end
+
+    true
+  end
+
   private
   def facebook_user
     (session[:fb_access_token] && session[:fb_user_uid]) ? FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => session[:fb_access_token]).selection.me.info! : nil

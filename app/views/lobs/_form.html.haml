@@ -5,7 +5,7 @@
     .form-inputs
       = f.input :description, label: t('Description')
       = f.input :published, label: t('Published')
-      = f.association :user, collection: User.all(order: 'email'), prompt: t("Choose a User"), label: t('User')
+      = f.association :user, collection: @friends, prompt: t("Choose a User"), label: t('User')
 
     %div.btn-group
     .form-actions

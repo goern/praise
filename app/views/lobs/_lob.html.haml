@@ -6,7 +6,7 @@
     .modal-body
       = f.input :description
       = f.input :published
-      = f.association :user, collection: User.all(order: 'email'), prompt: "Choose a User"
+      = f.association :user, collection: User.fb_friends, prompt: "Choose a User"
     .modal-footer
       = f.submit "save", :class => "btn btn-success"
       %a.btn{"data-dismiss" => "modal", :href => "#"} dismiss
