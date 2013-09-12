@@ -17,6 +17,10 @@ class LobsController < ApplicationController
   # GET /lobs/new
   def new
     @lob = Lob.new
+    
+    $graph = Koala::Facebook::API.new(session[:fb_access_token]) unless $graph.nil?
+    @friends = $graph.get_connections("me", "friends")
+    
   end
 
   # GET /lobs/1/edit
@@ -27,7 +31,7 @@ class LobsController < ApplicationController
   # POST /lobs.json
   def create
     @lob = Lob.new(lob_params)
-    @lob.author_id = session[:user_id]
+    @lob.author_fb_id = session[:fb_user_id]
 
     respond_to do |format|
       if @lob.save
@@ -72,6 +76,6 @@ class LobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lob_params
-      params.require(:lob).permit(:description, :published, :user_id)
+      params.require(:lob).permit(:description, :user_fb_id)
     end
 end

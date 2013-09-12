@@ -5,8 +5,7 @@
       %h3 Edit Lob
     .modal-body
       = f.input :description
-      = f.input :published
-      = f.association :user, collection: User.all(order: 'email'), prompt: "Choose a User"
+      = f.input :user_fb_id, collection: @friends, :label_method => lambda { |obj| obj['name'] }, :value_method => lambda { |obj| obj['id'] }, prompt: t("Choose a User"), label: t('User')
     .modal-footer
       = f.submit "save", :class => "btn btn-success"
       %a.btn{"data-dismiss" => "modal", :href => "#"} dismiss
