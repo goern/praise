@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :lob do
     description "MyText"
-    published false
+    author_fb_id 1
+    user_fb_id 1
   end
 end
