@@ -7,6 +7,7 @@ class Lob < ActiveRecord::Base
   def author
     if $graph.nil?
       ""
+    end
     
     name = Rails.cache.read('fb_me_name')
     if name.nil?
@@ -22,6 +23,7 @@ class Lob < ActiveRecord::Base
   def user
     if $graph.nil?
       ""
+    end
         
     name = Rails.cache.read(user_fb_id)
     if name.nil?
