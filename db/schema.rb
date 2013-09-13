@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130913084649) do
+ActiveRecord::Schema.define(version: 20130913092746) do
 
   create_table "lobs", force: true do |t|
-    t.integer  "author_fb_id"
-    t.integer  "user_fb_id"
+    t.integer  "author_fb_id", limit: 8
+    t.integer  "user_fb_id",   limit: 8
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
