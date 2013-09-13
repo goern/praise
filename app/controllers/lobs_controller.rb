@@ -18,7 +18,7 @@ class LobsController < ApplicationController
   def new
     @lob = Lob.new
     
-    @friends = $graph.get_connections("me", "friends")
+    @friends = $graph.get_connections("me", "friends") unless $graph.nil?
     
   end
 

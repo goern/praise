@@ -14,4 +14,3 @@
             %a.btn.btn-mini{"data-toggle" => "modal", :href => "#lob-edit-#{lob.id}", :type => "button"} edit
             = render lob
             = link_to 'destroy', lob, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini' unless lob.author == current_user
-            
