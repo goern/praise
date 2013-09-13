@@ -10,7 +10,10 @@ class SessionsController < ApplicationController
     token = auth['credentials']['token']
     user = User.where(:provider => auth['provider'], 
                       :uid => auth['uid'].to_s).first || User.create_with_omniauth(auth)
-    #session[:fb_access_token] = auth['credentials']['token']
+
+    $graph = Koala::Facebook::API.new(token)
+
+    logger.debug "a=#{auth}, t=#{token}, u=#{user}, g=#{$graph}"
     
 # Reset the session after successful login, per
 # 2.8 Session Fixation – Countermeasures:
@@ -18,7 +21,7 @@ class SessionsController < ApplicationController
     reset_session
     session[:user_id] = user.id
     session[:fb_access_token] = token
-    session[:fbgraph_uid] = auth['uid']
+    session[:fb_user_id] = auth['uid']
     user.add_role :admin if User.count == 1 # make the first user an admin
     if user.email.blank?
       redirect_to edit_user_path(user), :alert => I18n.t("Please enter your email address.")

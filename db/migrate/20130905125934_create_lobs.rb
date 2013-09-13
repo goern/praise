@@ -1,11 +1,9 @@
 class CreateLobs < ActiveRecord::Migration
   def change
     create_table :lobs do |t|
-      t.text :description
-      t.boolean :published
-
-      t.belongs_to :user, index: true
-      t.belongs_to :author, :class_name => 'User', index: true
+      t.integer :author_fb_id # author says about
+      t.integer :user_fb_id   # user, that he
+      t.text :description     # was good at this
 
       t.timestamps
     end

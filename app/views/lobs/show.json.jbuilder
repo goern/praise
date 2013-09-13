@@ -1,1 +1,1 @@
-json.extract! @lob, :description, :published, :created_at, :updated_at
+json.extract! @lob, :description, :created_at, :updated_at
