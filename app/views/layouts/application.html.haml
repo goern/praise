@@ -1,5 +1,5 @@
-!!!
-%html
+!!! 5
+%html(lang="en" prefix="og: http://ogp.me/ns#")
   %head
     %meta{:charset => "utf-8"}
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
@@ -34,20 +34,4 @@
                 = render 'layouts/messages'
                 = yield
 
-            %footer
-
-            - if Rails.env.production?
-              :javascript
-                    var _paq = _paq || [];
-                    _paq.push(["setCookieDomain", "*.haste-gut-gemacht.de"]);
-                    _paq.push(["trackPageView"]);
-                    _paq.push(["enableLinkTracking"]);
-                    (function() {
-                      var u=(("https:" == document.location.protocol) ? "https" : "http") + "://b4mad-service.net/piwik/";
-                      _paq.push(["setTrackerUrl", u+"piwik.php"]);
-                      _paq.push(["setSiteId", "6"]);
-                      var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-                      g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-                    })();
-        / ! end of .container
-      / ! end of #main
+            = render 'layouts/footer'
