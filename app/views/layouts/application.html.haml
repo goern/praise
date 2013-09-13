@@ -3,7 +3,7 @@
   %head
     %meta{:charset => "utf-8"}
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-    %meta{:content => "<%= ENV['FACEBOOK_KEY'] %>", :name => "facebook-app-id"}
+    %meta{:content => "#{ENV['FACEBOOK_KEY']}", :name => "facebook-app-id"}
 
       %title= content_for?(:title) ? yield(:title) : "Hier wird gelobt!"
       %meta{:content => content_for?(:description) ? yield(:description) : "und mal ehrlich, die Leute können doch echt was!", :name => "description"}
