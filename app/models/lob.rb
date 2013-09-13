@@ -5,7 +5,9 @@ class Lob < ActiveRecord::Base
   scope :during_last, lambda {|time| where("created_at > ?", (Time.now - time)) }
 
   def author
-    unless $graph.nil?
+    if $graph.nil?
+      logger.error "$graph is nil! ALERT"
+    else
       name = Rails.cache.read('fb_me_name')
       if name.nil?
         name = $graph.get_object('me')['name']
@@ -19,7 +21,9 @@ class Lob < ActiveRecord::Base
   end
   
   def user
-    unless $graph.nil?
+    if $graph.nil?
+      logger.error "$graph is nil! ALERT"
+    else
       name = Rails.cache.read(user_fb_id)
       if name.nil?
         name = $graph.get_object(user_fb_id)['name']

@@ -1,15 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
-  helper_method :facebook_user
 
   private
-  def facebook_user
-    (session[:fb_access_token] && session[:fb_user_uid]) ? FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => session[:fb_access_token]).selection.me.info! : nil
-  end
-
   def current_user
     begin
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
