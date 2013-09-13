@@ -10,7 +10,10 @@ class SessionsController < ApplicationController
     token = auth['credentials']['token']
     user = User.where(:provider => auth['provider'], 
                       :uid => auth['uid'].to_s).first || User.create_with_omniauth(auth)
-    #session[:fb_access_token] = auth['credentials']['token']
+
+    $graph = Koala::Facebook::API.new(token)
+
+    logger.debug "a=#{auth}, t=#{token}, u=#{user}, g=#{$graph}"
     
 # Reset the session after successful login, per
 # 2.8 Session Fixation – Countermeasures:

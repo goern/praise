@@ -18,7 +18,6 @@ class LobsController < ApplicationController
   def new
     @lob = Lob.new
     
-    $graph = Koala::Facebook::API.new(session[:fb_access_token]) unless $graph.nil?
     @friends = $graph.get_connections("me", "friends")
     
   end
@@ -32,6 +31,8 @@ class LobsController < ApplicationController
   def create
     @lob = Lob.new(lob_params)
     @lob.author_fb_id = session[:fb_user_id]
+
+    # $graph.put_connections("me", "feed", :message => @lob.description)
 
     respond_to do |format|
       if @lob.save

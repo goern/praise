@@ -16,6 +16,7 @@ gem 'figaro'
 gem 'haml-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'fb-channel-file'
 gem 'koala', '~> 1.7.0rc1'
 
 gem 'rolify'

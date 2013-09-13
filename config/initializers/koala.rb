@@ -2,7 +2,7 @@ Koala::Facebook::OAuth.class_eval do
   def initialize_with_default_settings(*args)
     case args.size
       when 0, 1
-        initialize_without_default_settings('587786671260237', '58f9b2bfe8ba7e931c2482e85af344dc', args.first)
+        initialize_without_default_settings(ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], args.first)
       when 2, 3
         initialize_without_default_settings(*args) 
     end

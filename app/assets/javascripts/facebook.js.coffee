@@ -25,12 +25,12 @@ restoreFacebookRoot = ->
 
 loadFacebookSDK = ->
   window.fbAsyncInit = initializeFacebookSDK
-  $.getScript("//connect.facebook.com/en_US/all.js#xfbml=1")
+  $.getScript("//connect.facebook.net/en_US/all.js#xfbml=1")
 
 initializeFacebookSDK = ->
   FB.init
-    appId     : '587786671260237'
-    channelUrl: 'https://localhost/channel.html'
+    appId     : $('meta[name="facebook-app-id"]').attr('content')
+    channelUrl: '//localhost/channel.html'
     status    : true
     cookie    : true
-    xfbml     : false
+    xfbml     : true
