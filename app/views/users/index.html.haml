@@ -7,7 +7,6 @@
         %th Email
         %th Registered
         %th Role
-        %th Visible
         %th
         %th
     %tbody
@@ -17,9 +16,7 @@
           %td= user.email
           %td= user.created_at.to_date
           %td= user.roles.first.name.titleize unless user.roles.first.nil?
-          %td= user.visible
           %td
             %a.btn.btn-mini{"data-toggle" => "modal", :href => "#role-options-#{user.id}", :type => "button"} change role
-            %a.btn.btn-mini{"data-toggle" => "modal", :href => "#visibility-options-#{user.id}", :type => "button"} change visibility
             = render user
             = link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user
