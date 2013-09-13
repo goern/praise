@@ -5,13 +5,11 @@
     %thead
       %tr
         %th= t 'Description'
-        %th= t 'Published'
         %th
     %tbody
       - @lobs.each do |lob|
         %tr
           %td= lob.description
-          %td= lob.published
           %td
             %a.btn.btn-mini{"data-toggle" => "modal", :href => "#lob-edit-#{lob.id}", :type => "button"} edit
             = render lob

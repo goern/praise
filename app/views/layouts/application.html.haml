@@ -1,14 +1,18 @@
 !!! 5
 %html(lang="en" prefix="og: http://ogp.me/ns#")
   %head
+    %meta{:charset => "utf-8"}
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-      %title= content_for?(:title) ? yield(:title) : "haste gut gemacht!"
-      %meta{:content => content_for?(:description) ? yield(:description) : "haste gut gemacht!", :name => "description"}
+    %meta{:content => "<%= ENV['FACEBOOK_KEY'] %>", :name => "facebook-app-id"}
+
+      %title= content_for?(:title) ? yield(:title) : "Hier wird gelobt!"
+      %meta{:content => content_for?(:description) ? yield(:description) : "und mal ehrlich, die Leute können doch echt was!", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
         = javascript_include_tag "application"
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
+    %div#fb-root
     %div.container.canvas
       .navbar.navbar-fixed-top
         %nav.navbar-inner
@@ -22,9 +26,12 @@
                 - if current_user
                   %p Hey <em>#{current_user.name}</em>, danke das du vorbei schaust und was gutes über deine Freunde sagen willst.
                   %p Rechts kannst du sehen was kürzlich gesagt worden ist, aber: #{link_to 'sag selbst etwas Gutes!', new_lob_url}!
+                  %p.fb-like{"data-action" => "recommend", "data-href" => "http://haste-gut-gemacht.de/", "data-layout" => "box_count", "data-send" => true, "data-show-faces" => false, "data-width" => "450"}
                 - else
                   %p Bitte #{link_to 'melde dich via Facebook', signin_url} an, so dass du deinen Freunden sagen kann: das haste gut gemacht!
+                  %p.fb-like{"data-action" => "recommend", "data-href" => "http://haste-gut-gemacht.de/", "data-layout" => "box_count", "data-send" => true, "data-show-faces" => false, "data-width" => "450"}
               .span10
                 = render 'layouts/messages'
                 = yield
+
             = render 'layouts/footer'
