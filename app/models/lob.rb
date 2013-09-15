@@ -6,12 +6,17 @@ class Lob < ActiveRecord::Base
 
   def author
     if $graph.nil?
-      logger.error "$graph is nil! ALERT"
+      logger.error "$graph is still nil! ALERT"
     else
       name = Rails.cache.read('fb_me_name')
       if name.nil?
-        name = $graph.get_object('me')['name']
-        Rails.cache.write('fb_me_name', name)
+        # seeAlso http://benbiddington.wordpress.com/2010/04/23/facebook-graph-api-getting-access-tokens/
+        begin
+          name = $graph.get_object('me')['name'] # FIXME me is not avail at this point where we dont have a (API auth'd with a) token
+          Rails.cache.write('fb_me_name', name)
+        rescue OAuthException => e
+          name ="<unset>"
+        end
       else
         name = Rails.cache.read('fb_me_name')
       end
