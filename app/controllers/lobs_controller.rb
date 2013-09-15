@@ -12,6 +12,9 @@ class LobsController < ApplicationController
   # GET /lobs/1
   # GET /lobs/1.json
   def show
+    if $graph.nil?
+      $graph = Koala::Facebook::API.new
+    end
   end
 
   # GET /lobs/new

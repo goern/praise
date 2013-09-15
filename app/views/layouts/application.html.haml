@@ -11,6 +11,8 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
 
+    %meta{:content => "#{ image_url('good_job.png') }", :name => 'og:image'}
+
     - if content_for?(:opengraph) 
       = yield(:opengraph)
     = render_opengraph("og:title" => content_for?(:title) ? yield(:title) : "haste-gut-gemacht",
@@ -34,6 +36,8 @@
           .content
             .row
               .span2
+                %p
+                  =image_tag 'good_job.png'
                 - if current_user
                   %p Hey <em>#{current_user.name}</em>, danke das du vorbei schaust und was gutes über deine Freunde sagen willst.
                   %p Rechts kannst du sehen was kürzlich gesagt worden ist, aber: #{link_to 'sag selbst etwas Gutes!', new_lob_url}!
