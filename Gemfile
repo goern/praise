@@ -36,6 +36,7 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
+	gem "seed_dump", "~> 0.6.0"
 end
 
 group :development, :test do

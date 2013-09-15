@@ -1,14 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-# Environment variables (ENV['...']) can be set in the file config/application.yml.
-# See http://railsapps.github.io/rails-environment-variables.html
+# encoding: utf-8
+
 puts 'ROLES'
 YAML.load(ENV['ROLES']).each do |role|
   Role.find_or_create_by_name(role)
   puts 'role: ' << role
 end
+
+Lob.create([
+  { :author_fb_id => 1066967336, :user_fb_id => 1320360487, :description => "erstes Lob", :created_at => "2013-09-13 11:44:37", :updated_at => "2013-09-13 11:44:37" },
+  { :author_fb_id => 1320360487, :user_fb_id => 1066967336, :description => "zweites Lob", :created_at => "2013-09-13 12:44:37", :updated_at => "2013-09-13 12:44:37" },
+  { :author_fb_id => 1293398323, :user_fb_id => 1066967336, :description => "drittes Lob", :created_at => "2013-09-13 13:44:37", :updated_at => "2013-09-13 13:44:37" }
+])
+
+
