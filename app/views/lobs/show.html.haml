@@ -1,7 +1,10 @@
 %p#notice= notice
 
 %p
-  %b Description:
-  = @lob.description
+	= image_tag "https://graph.facebook.com/#{@lob.author_fb_id}/picture?type=small", :alt => "#{@lob.author}"
+	%p #{@lob.author} sagt
+	%p
+		= image_tag "https://graph.facebook.com/#{@lob.user_fb_id}/picture?type=small", :alt => "#{@lob.author}"
 
-= link_to 'Edit', edit_lob_path(@lob)
+		#{@lob.user}, das haste richtig gut gemacht: '#{@lob.description}'
+		.fb-like{"data-action" => "like", "data-href" => "http://localhost:3000/lobs/1", "data-colorscheme" => "light", "data-layout" => "standard", "data-send" => false, "data-show-faces" => false, "data-width" => "450"}
