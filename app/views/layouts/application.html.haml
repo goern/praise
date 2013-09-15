@@ -5,12 +5,23 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     %meta{:content => "#{ENV['FACEBOOK_KEY']}", :name => "facebook-app-id"}
 
-      %title= content_for?(:title) ? yield(:title) : "Hier wird gelobt!"
-      %meta{:content => content_for?(:description) ? yield(:description) : "und mal ehrlich, die Leute können doch echt was!", :name => "description"}
-        = stylesheet_link_tag "application", :media => "all"
-        = javascript_include_tag "application"
-        = csrf_meta_tags
-        = yield(:head)
+    %title= content_for?(:title) ? yield(:title) : "Hier wird gelobt!"
+    %meta{:content => content_for?(:description) ? yield(:description) : "und mal ehrlich, die Leute können doch echt was!", :name => "description"}
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+    - if content_for?(:opengraph) 
+      = yield(:opengraph)
+    = render_opengraph("og:title" => content_for?(:title) ? yield(:title) : "haste-gut-gemacht",
+          "og:url" => url_for(only_path: false),
+          "og:site_name"=> "haste-gut-gemacht.de",
+          "fb:admins" => "1066967336",
+          "og:type" => "website",
+          "og:description" => "Hier wird gelobt!")
+
+    = yield(:head)
+
   %body{:class => "#{controller_name} #{action_name}"}
     %div#fb-root
     %div.container.canvas

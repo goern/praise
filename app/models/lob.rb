@@ -8,17 +8,16 @@ class Lob < ActiveRecord::Base
     if $graph.nil?
       logger.error "$graph is still nil! ALERT"
     else
-      name = Rails.cache.read('fb_author_name')
+      name = Rails.cache.read(author_fb_id)
       if name.nil?
         # seeAlso http://benbiddington.wordpress.com/2010/04/23/facebook-graph-api-getting-access-tokens/
         begin
           name = $graph.get_object(author_fb_id)['name']
-          Rails.cache.write('fb_author_name', name)
+          Rails.cache.write(author_fb_id, name)
         rescue
-          name = "<unset>"
         end
       else
-        name = Rails.cache.read('fb_author_name')
+        name = Rails.cache.read(author_fb_id)
       end
     end
     
