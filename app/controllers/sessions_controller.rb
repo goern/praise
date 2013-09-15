@@ -33,6 +33,8 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
+    $graph = nil
+    
     redirect_to root_url, :notice => I18n.t('Signed out!')
   end
 

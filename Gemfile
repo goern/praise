@@ -25,6 +25,7 @@ gem 'mail_form', :git => 'https://github.com/plataformatec/mail_form.git'
 gem 'rack-recaptcha', :require => 'rack/recaptcha'
 
 group :development do
+	gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'guard-bundler'
@@ -40,13 +41,13 @@ end
 group :development, :test do
 	gem 'sqlite3'
   gem 'factory_girl_rails'
-  gem 'rspec-rails'
+  gem 'rspec-rails', "~> 2.12"
   gem 'mailcatcher'
 end
 
 group :test do
   gem 'capybara'
-  gem 'cucumber-rails', :require=>false
+  gem 'cucumber-rails', :require => false
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
   gem 'launchy'
@@ -54,7 +55,7 @@ end
 
 group :production do
 	gem 'pg'
-  gem 'thin'
+  gem 'unicorn'
   gem 'rails_12factor'
   gem 'newrelic_rpm'
 end
