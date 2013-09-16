@@ -2,6 +2,7 @@ class LobsController < ApplicationController
   load_and_authorize_resource except: [:create]
   
   before_action :set_lob, only: [:show, :edit, :update, :destroy]
+  before_action :set_friends, only: [:new, :create]
 
   # GET /lobs
   # GET /lobs.json
@@ -20,9 +21,6 @@ class LobsController < ApplicationController
   # GET /lobs/new
   def new
     @lob = Lob.new
-    
-    @friends = $graph.get_connections("me", "friends") unless $graph.nil?
-    
   end
 
   # GET /lobs/1/edit
@@ -76,6 +74,17 @@ class LobsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_lob
       @lob = Lob.find(params[:id])
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_friends
+      # FIXME type: OAuthException, code: 2500, message: An active access token must be used to query information about the current user. [HTTP 400]
+      begin
+        @friends = $graph.get_connections("me", "friends") unless $graph.nil?
+      rescue Koala::Facebook::AuthenticationError => e
+        logger.error e
+        @friends = [{'name' => 'ERROR', 'id' => 0}]
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

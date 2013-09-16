@@ -4,7 +4,7 @@
 
     .form-inputs
       = f.input :description, label: t('Description')
-      = f.input :user_fb_id, collection: @friends, :label_method => lambda { |obj| obj['name'] }, :value_method => lambda { |obj| obj['id'] }, prompt: t("Choose a User"), label: t('User')
+      = f.input :user_fb_id, collection: @friends, :label_method => lambda { |obj| obj['name'].to_s }, :value_method => lambda { |obj| obj['id'].to_i }, prompt: t("Choose a User"), label: t('User'), :as => :select
     %div.btn-group
     .form-actions
       = f.submit t('save'), :class => "btn btn-success"

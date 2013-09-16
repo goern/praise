@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
     $graph = Koala::Facebook::API.new(token)
 
-    logger.debug "a=#{auth}, t=#{token}, u=#{user}, g=#{$graph}"
+#    logger.debug "a=#{auth}, t=#{token}, u=#{user}, g=#{$graph}"
     
 # Reset the session after successful login, per
 # 2.8 Session Fixation – Countermeasures:
