@@ -83,7 +83,8 @@ class LobsController < ApplicationController
         @friends = $graph.get_connections("me", "friends") unless $graph.nil?
       rescue Koala::Facebook::AuthenticationError => e
         logger.error e
-        @friends = [{'name' => 'ERROR', 'id' => 0}]
+        redirect_to signin_url
+#        @friends = [{'name' => 'ERROR', 'id' => 0}]
       end
     end
 
